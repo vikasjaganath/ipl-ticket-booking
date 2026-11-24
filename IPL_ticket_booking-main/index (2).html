@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Ticket Booking 2026</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Fixed Header & Responsive Flexbox Navigation Bar -->
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="showTab('home')">🏏 IPL 2026</div>
+            <button id="hamburgerBtn" class="hamburger" aria-label="Toggle Menu">&#9776;</button>
+            <nav id="navLinks">
+                <a onclick="showTab('home')">Home</a>
+                <a onclick="showTab('matches')">Matches</a>
+                <a onclick="bookMatch()">Book Ticket</a>
+                <a onclick="showTab('bookings')">My Bookings</a>
+                <a onclick="showTab('guidelines')">Guidelines</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- HOME TAB -->
+        <div id="home" class="tab-content active">
+            <!-- Hero Banner Section -->
+            <div class="hero">
+                <h1>IPL 2026 Ticket Booking</h1>
+                <p>Experience The Stadium Energy Live!</p>
+                <a class="hero-btn" onclick="showTab('matches')">View Schedule</a>
+                <a class="hero-btn" onclick="bookMatch()">Book Ticket</a>
+            </div>
+
+            <h2>About IPL 2026</h2>
+            <p>IPL is an exciting cricket tournament. Support your favourite team live from the venue!</p>
+
+            <h3>Popular Teams</h3>
+            <ul>
+                <li>Chennai Super Kings</li>
+                <li>Royal Challengers Bangalore</li>
+                <li>Mumbai Indians</li>
+                <li>Sunrisers Hyderabad</li>
+                <li>Punjab Kings</li>
+            </ul>
+
+            <h3>Major Match Venues</h3>
+            <ul>
+                <li>Chepauk Stadium</li>
+                <li>M. Chinnaswamy Stadium</li>
+                <li>Wankhede Stadium</li>
+                <li>Rajiv Gandhi Stadium</li>
+            </ul>
+        </div>
+
+        <!-- MATCHES TAB -->
+        <div id="matches" class="tab-content">
+            <div class="matches-header">
+                <h2>IPL Match Schedule</h2>
+
+                <!-- Filter & View Toggle Controls -->
+                <div class="match-controls">
+                    <select id="teamFilter" aria-label="Filter by Team">
+                        <option value="all">All Teams</option>
+                        <option value="RCB">RCB</option>
+                        <option value="CSK">CSK</option>
+                        <option value="MI">MI</option>
+                        <option value="SRH">SRH</option>
+                        <option value="RR">RR</option>
+                        <option value="KKR">KKR</option>
+                    </select>
+
+                    <div class="view-toggle">
+                        <button type="button" id="gridViewBtn" class="view-btn active-view">Grid View</button>
+                        <button type="button" id="listViewBtn" class="view-btn">List View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CSS Grid Match Container -->
+            <div id="matchesContainer" class="matches-grid">
+                <div class="match-card" data-teams="RCB CSK">
+                    <div>
+                        <h3>RCB vs CSK</h3>
+                        <p><strong>Date:</strong> 25 August 2026</p>
+                        <p><strong>Time:</strong> 7:30 PM</p>
+                        <p><strong>Venue:</strong> M. Chinnaswamy Stadium</p>
+                    </div>
+                    <a class="hero-btn" onclick="bookMatch('rcb-csk', 'RCB vs CSK')">Book Ticket</a>
+                </div>
+
+                <div class="match-card" data-teams="MI SRH">
+                    <div>
+                        <h3>MI vs SRH</h3>
+                        <p><strong>Date:</strong> 27 August 2026</p>
+                        <p><strong>Time:</strong> 7:30 PM</p>
+                        <p><strong>Venue:</strong> Wankhede Stadium</p>
+                    </div>
+                    <a class="hero-btn" onclick="bookMatch('mi-srh', 'MI vs SRH')">Book Ticket</a>
+                </div>
+
+                <div class="match-card" data-teams="RR KKR">
+                    <div>
+                        <h3>RR vs KKR</h3>
+                        <p><strong>Date:</strong> 29 August 2026</p>
+                        <p><strong>Time:</strong> 7:30 PM</p>
+                        <p><strong>Venue:</strong> Sawai Mansingh Stadium</p>
+                    </div>
+                    <a class="hero-btn" onclick="bookMatch('rr-kkr', 'RR vs KKR')">Book Ticket</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOOK TICKET TAB -->
+        <div id="book" class="tab-content">
+            <h2>Enter Your Details</h2>
+
+            <form id="bookingForm" action="#" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>
+
+                <label for="match">Select Match:</label>
+                <select id="match" name="match" required>
+                    <option value="" disabled selected>-- Choose a match --</option>
+                    <option value="rcb-csk">RCB vs CSK</option>
+                    <option value="mi-srh">MI vs SRH</option>
+                    <option value="rr-kkr">RR vs KKR</option>
+                </select>
+
+                <label for="category">Stand Category:</label>
+                <select id="category" name="category" required>
+                    <option value="general">General (₹1,200)</option>
+                    <option value="premium">Premium (₹2,500)</option>
+                    <option value="vip">VIP (₹5,000)</option>
+                </select>
+
+                <label for="tickets">Number of Tickets:</label>
+                <input type="number" id="tickets" name="tickets" min="1" max="10" value="1" required>
+
+                <!-- LIVE BOOKING SUMMARY CARD -->
+                <div id="bookingSummary" class="match-card" style="margin-top: 20px; background-color: #f9fafc;">
+                    <h3>Booking Summary</h3>
+                    <p><strong>Match:</strong> <span id="summaryMatch">Not selected</span></p>
+                    <p><strong>Stand Category:</strong> <span id="summaryCategory">General</span></p>
+                    <p><strong>Ticket Quantity:</strong> <span id="summaryTickets">1</span></p>
+                    <hr>
+                    <p style="font-size: 18px;"><strong>Total Price:</strong> ₹<span id="summaryTotal">1,200</span></p>
+                </div>
+
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </div>
+
+        <!-- MY BOOKINGS TAB -->
+        <div id="bookings" class="tab-content">
+            <h2>Booking Details</h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Match</th>
+                            <th>Category</th>
+                            <th>Tickets</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>RCB vs CSK</td>
+                            <td>General</td>
+                            <td>1</td>
+                            <td>₹1,200</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- GUIDELINES TAB (3-Column CSS Grid) -->
+        <div id="guidelines" class="tab-content">
+            <h2>IPL Ticket Booking Guidelines</h2>
+
+            <div class="guidelines-grid">
+                <div class="guideline-card">
+                    <h3>Ticket Booking Rules</h3>
+                    <ul>
+                        <li>Enter your correct name.</li>
+                        <li>Provide a valid email address.</li>
+                        <li>Enter your mobile number.</li>
+                        <li>Select the correct match.</li>
+                        <li>Choose the number of tickets.</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <h3>Stadium Entry Rules</h3>
+                    <ul>
+                        <li>Carry your valid ticket.</li>
+                        <li>Carry your ID proof.</li>
+                        <li>Reach the stadium early.</li>
+                        <li>Follow stadium instructions.</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <h3>Prohibited Items</h3>
+                    <ul>
+                        <li>Weapons</li>
+                        <li>Glass bottles</li>
+                        <li>Fireworks</li>
+                        <li>Large bags</li>
+                        <li>Laser pointers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="refund-box">
+                <h3>Cancellation and Refund</h3>
+                <p>Ticket cancellation and refund policies depend on the stadium management and official ticket provider.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>IPL Ticket Booking - 2026 | All Rights Reserved.</p>
+    </footer>
+
+    <!-- External JavaScript File -->
+    <script src="app.js"></script>
+
+</body>
+</html>

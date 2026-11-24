@@ -1,0 +1,420 @@
+/* Step 1: Define CSS Variables for the website theme */
+:root {
+    --primary-color: #0b1d3a;    /* Dark Blue */
+    --accent-color: #ffb703;     /* Gold */
+    --background-color: #f4f6f9; /* Soft Gray */
+    --text-color: #222222;       /* Dark Text */
+    --white: #ffffff;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Global Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding-top: 75px; /* Space for the fixed navigation bar */
+}
+
+/* Step 2: Fixed Flexbox Navigation Bar */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--accent-color);
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    font-size: 22px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+/* Step 3: Hero / Banner Section */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), #1d3557);
+    color: var(--white);
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.hero h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Styled Hero Buttons */
+.hero-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.hero-btn:hover {
+    background-color: #e0a100;
+}
+
+/* Page Layout & Container */
+.container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tab-content {
+    display: none;
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.active {
+    display: block;
+}
+
+/* Step 4: Match Schedule Header, Filter, & Grid/List Layouts */
+.matches-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.matches-header h2 {
+    margin: 0;
+}
+
+.match-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.match-controls select {
+    width: auto;
+    min-width: 150px;
+    padding: 8px 12px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 6px;
+}
+
+.view-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--white);
+    color: var(--primary-color);
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-btn.active-view {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* CSS Grid View for Matches (3 Columns on Desktop) */
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* List View for Matches (1 Column Horizontal Row) */
+.matches-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.matches-list .match-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.match-card {
+    border: 1px solid #ddd;
+    border-left: 5px solid var(--accent-color);
+    padding: 18px;
+    border-radius: 6px;
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.match-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+/* Step 5: 3-Column CSS Grid for Guidelines */
+.guidelines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.guideline-card {
+    background-color: #f9fafc;
+    border: 1px solid #e0e4e8;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 18px;
+}
+
+.guideline-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.guideline-card ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.guideline-card li {
+    margin-bottom: 8px;
+}
+
+.refund-box {
+    margin-top: 20px;
+    padding: 15px 18px;
+    background-color: #fff8e6;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 6px;
+}
+
+.refund-box h3 {
+    margin-top: 0;
+}
+
+/* Step 6: Form Styling */
+form {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #1d3557;
+}
+
+/* Step 7: Table Styling */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Step 8: Footer Styling */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+}
+
+/* Step 9: Toast Notification Styling */
+.toast {
+    visibility: hidden;
+    min-width: 280px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    border-left: 5px solid var(--accent-color);
+    border-radius: 6px;
+    padding: 16px;
+    position: fixed;
+    z-index: 2000;
+    right: 25px;
+    bottom: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Step 10: Responsive Media Queries (Tablets & Phones) */
+@media (max-width: 768px) {
+    /* Show hamburger button and collapse navigation menu */
+    .hamburger {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 10px 0 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    }
+
+    nav.open {
+        display: flex;
+    }
+
+    nav a {
+        padding: 12px 20px;
+        border-radius: 0;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Stack match cards and guidelines into a single column */
+    .matches-grid,
+    .guidelines-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .matches-list .match-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+}
